@@ -1,0 +1,104 @@
+/* import babylonica from google font */
+@import url('https://fonts.googleapis.com/css2?family=Babylonica&family=Caveat&family=Montserrat:wght@100;400;600&display=swap');
+
+/* width and height is calulated based on element width + border + padding
+   box-sizing solves this it includes border and padding within specified size
+   If you set box-sizing: border-box; on an element, padding and border are included in the width and height: */
+* {
+    box-sizing: border-box;
+}
+
+body{
+    /* uses flexbox and by default flex direction is row */
+    display: flex;
+    /* we want the flex items to be displayed column wise (header->content->footer)*/
+    flex-direction: column;
+    /* align-items controls the alignment of items in cross axis, so if the flex direction is row , it aligns column axis */
+    align-items: center;
+    /* justify content controls alignment on main axis, i.e. if flex is row , it aligns row axis */
+    justify-content: center;
+    /* sets background color */
+    background-color: #F8E9E9;
+    /* Sets font family */
+    font-family: 'Babylonica', cursive;
+    /* setting maxheight to avoid overflow */
+    max-height: 100vh;
+    /* overflow hidden avoids scrollbar */
+    overflow: hidden;
+}
+/* style for header class */
+.header{
+    margin: 0;
+    font-size: 5vh;
+    color: blue;
+}
+/* style for container class */
+.container{
+    /* inside container we want to use flexbox with row direction*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+}
+
+.content{
+    /* we do not want the image to repeat */
+    background-repeat: no-repeat;
+    /* we want the image to be shown at center */
+    background-position: center;
+    /* we want the image to cover the whole div , including the curvy edges */
+    background-size: cover;
+    /* we want to set the position relative so that we can set internal h3 as absolute */
+    position: relative;
+    /* we would like to set dynamic height to 70% of view height */
+    height: 70vh;
+    /* flex property is a shorthand for flex-grow , flex-shrink, flex-basis
+    The flex property sets the flexible length on flexible items.Note: If the element is not a flexible item, the flex property has no effect.*/
+    flex: 0.5;
+    /* sets the font color */
+    color: white;
+    /* sets the mouse cursor as pointer */
+    cursor: pointer;
+    /* sets annimation and transition with smooth flow */
+    transition: flex 0.7s ease-in;
+    /* sets font size */
+    font-size: 5vh;
+    /* adds space in netween */
+    margin: 0.5vw;
+    /* adds an oval shape to the border */
+    border-radius: 20px;
+}
+/* sets child h3 invisible when not active */
+.content h3{
+    opacity: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+/* style when content has active class */
+.content.active{
+    /* expands flex to 5 when active */
+    flex: 5.0;
+}
+/* sets child h3 visible when active */
+.content.active h3{
+    opacity: 1;
+}
+/* style for footer class */
+.footer{
+    margin: 0;
+    font-size: 5vh;
+    color: red;
+}
+
+/* css when screen size is less than equal to 480 px */
+@media(max-width: 480px){
+    .container{
+        width: 90vw;
+    }
+    /* pseudo selector , selects nth of the selected class and apply style */
+    .content:nth-of-type(4),
+    .content:nth-of-type(5){
+        display: none;
+    }
+}

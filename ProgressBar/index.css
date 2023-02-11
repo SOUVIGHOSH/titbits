@@ -1,0 +1,99 @@
+/* imports google font */
+@import url('https://fonts.googleapis.com/css2?family=Babylonica&family=Caveat&family=Montserrat:wght@100;400;600&display=swap');
+/* custom css variable for reuse same values , root is global scope , i.e. can be used for all elements in this html */
+:root{
+    --header-color: blue;
+    --footer-color: red;
+    --header-font: 'Montserrat';
+    --footer-font: 'Babylonica';
+    --empty-non-active: #e0e0e0;
+}
+/* includes padding and border within size of element */
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* centers all child columnwise as flex direction is column */
+    justify-content: center;
+    /* centers all child in row */
+    align-items: center;
+}
+
+.header{
+    /* using custom variable */
+    font-family: var(--header-font), sans-serif;
+    font-size: 3vh;
+    color: var(--header-color);
+}
+
+.footer{
+    font-family: var(--footer-font), sans-serif;
+    font-size: 4vh;
+    color: var(--footer-color);
+}
+
+.container{
+    height: 50vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    margin: 5vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.steps{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-bottom: 5vw;
+    /* setting position relative so that we can set absolute position of the child */
+    position: relative;
+}
+/* ::before is a selector that insert an element before the selected element , content is must otherwise it won't work */
+.steps::before{
+    content:'';
+    width: 100%;
+    height: 5px;
+    background-color: var(--empty-non-active);
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    /* transform scales , rotates and adjust elememt axis wise , here we are setting the progressbar to 50 percent of y axis */
+    transform: translateY(50%);
+    /* ensure that this item whill be behind */
+    z-index: -1;
+}
+
+.step{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--empty-non-active);
+    background-color: var(--empty-non-active);
+    width:2vw;
+    height:4vh;
+    border-radius: 100%;
+}
+
+.step.active{
+    background-color: greenyellow;
+    /* animation effect */
+    transition: 0.8s ease-in;
+}
+
+.progressbar{
+    width: 0;
+    height: 5px;
+    background-color: blue;
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    transform: translateY(50%);
+    z-index: -1;
+    transition: 0.7s ease-in;
+}
